@@ -1,0 +1,168 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a 
+{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.search-sort 
+{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.search 
+{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin: 10px;
+}
+
+.search__text 
+{
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    flex: 1;
+    width: 100%;
+}
+
+.sort-btn 
+{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 200ms linear;
+}
+
+.sort-btn:hover, .sort-btn:active 
+{
+    background-color: rgb(34, 34, 172);
+}
+
+.sort-btn:active 
+{
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.resturants 
+{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(182, 176, 176, 0.2);
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.resturant 
+{
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    font-weight: 500;
+    width: 80%;
+    height: 300px;
+    overflow: auto;
+    scrollbar-width: none;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.resturant::-webkit-scrollbar
+{
+    display: none;
+}
+
+.resturant__brand 
+{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.resturant__img 
+{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    align-self: center;
+    margin: 10px 0;
+}
+
+
+.resturant-details-container 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(182, 176, 176, 0.2);
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.resturant-details
+{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 10px;
+    min-height: 400px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.resturant-details__brand-with-back
+{
+    display: flex;
+}
+
+.resturant-details__brand 
+{
+    font-size: 20px;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+}
+
+.resturant-details__img 
+{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    align-self: center;
+}
+
+@media screen and (min-width: 576px)
+{
+    .resturant
+    {
+        width: 300px;
+    }
+
+    .resturant__brand 
+    {
+        font-size: 20px;
+    }
+}
