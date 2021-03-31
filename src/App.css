@@ -12,6 +12,13 @@ a
     cursor: pointer;
 }
 
+.resturant-list 
+{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .search-sort 
 {
     display: flex;
@@ -19,6 +26,7 @@ a
     padding: 10px;
     align-items: center;
     justify-content: center;
+    background-color: white;
 }
 
 .search 
@@ -70,6 +78,7 @@ a
     background-color: rgba(182, 176, 176, 0.2);
     justify-content: space-around;
     padding: 10px;
+    flex: 1;
 }
 
 .resturant 
@@ -81,12 +90,13 @@ a
     margin: 10px;
     padding: 10px;
     font-weight: 500;
-    width: 80%;
+    width: 90%;
     height: 300px;
     overflow: auto;
     scrollbar-width: none;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
+
 
 .resturant::-webkit-scrollbar
 {
@@ -131,6 +141,7 @@ a
     border-radius: 10px;
     min-height: 400px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    justify-content: space-around;
 }
 
 .resturant-details__brand-with-back
@@ -164,5 +175,10 @@ a
     .resturant__brand 
     {
         font-size: 20px;
+    }
+
+    .resturant-details
+    {
+        min-width: 400px;
     }
 }

@@ -28,7 +28,7 @@ const ResturantDetails = React.memo(({resturants}) => {
 
     if(!resturant)
     {
-        return "Loading...";
+        return (<Loading />);
     }
 
     return (
@@ -95,10 +95,22 @@ const ResturantCard = React.memo(({resturant}) => {
 const ResturantList = ({resturants}) => {
     const [searchedResturants, setSearchedResturants] = useState([]);
     const [searchInput, setSearchInput] = useState('');
+    const [searchInputElem, setSearchInputElem] = useState(null);
 
     useEffect(() => {
         setSearchedResturants(resturants);
     }, [resturants]);
+
+    const getSearchInputElem = useCallback(elem => {
+        setSearchInputElem(elem);
+    }, []);
+
+    useEffect(() => {
+        if(searchInputElem)
+        {
+            searchInputElem.focus();
+        }
+    }, [searchInputElem]);
 
     const handleChange = e => {
         const value = e.target.value;
@@ -135,7 +147,7 @@ const ResturantList = ({resturants}) => {
 
     const handleSort = e => {
         
-        const sortedResturants = resturants.sort((resturant1, resturant2) => {
+        const sortedResturants = [...resturants].sort((resturant1, resturant2) => {
             
             if(typeof resturant1.Stars !== 'number')
             {
@@ -161,29 +173,29 @@ const ResturantList = ({resturants}) => {
             }
         });
         _sortedResturants = [..._sortedResturants, ...naResturants];
-        setSearchedResturants([..._sortedResturants]);
+        setSearchedResturants(_sortedResturants);
     }
 
 
     return (
-        <>
+        <div className="resturant-list">
             <div className="search-sort">
                 <div className="search">
                     <div className="search__icon">
                         <SearchIcon />
                     </div>
-                    <input type="text" className="search__text" placeholder="Search by brand" value={searchInput} onChange={handleChange} />
+                    <input type="text" ref={getSearchInputElem} className="search__text" placeholder="Search by brand" value={searchInput} onChange={handleChange} />
                 </div>
                 <button className="sort-btn" onClick={handleSort}>Sort by star</button>
             </div>
             <div className="resturants">
                 {searchedResturants.map((resturant, index) => (
-                    <NavLink to={`/resturant/${index}`} key={index}>
+                    <NavLink to={`/resturant/${resturant.id}`} key={index}>
                         <ResturantCard  resturant={resturant} />
                     </NavLink>
                 ))}
             </div>
-        </>);
+        </div>);
 }
 
 
@@ -203,7 +215,10 @@ const Resturant = props => {
                     responseType: 'json'
                 };
                 const {data} = await axios.get( api.PROXY + api.RESTURANT_API, {headers});
-                setResturants(data);
+                setResturants(data.map((resturant, index) => ({
+                    id: index,
+                    ...resturant
+                })));
                 const {data: _images} = await axios.get(api.PROXY + api.IMAGES_API, {headers});
                 setImages(_images);
             }
